@@ -1,5 +1,5 @@
 //
-//  MyToDoListAppApp.swift
+//  MyToDoListApp.swift
 //  MyToDoListApp
 //
 //  Created by Akshay T S on 19/06/21.
