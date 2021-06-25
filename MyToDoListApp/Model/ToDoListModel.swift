@@ -9,7 +9,11 @@ import Foundation
 
 class ToDoListModel: ObservableObject {
 	
-	@Published var listEntry: [ToDoListData] = [ToDoListData(id: UUID().uuidString, content: "Feed the fish", completed: true), ToDoListData(id: UUID().uuidString, content: "Fix the light bulb", completed: false), ToDoListData(id: UUID().uuidString, content: "Do laundry", completed: true)]
+	@Published var listEntry: [ToDoListData]
+
+	init(list: [ToDoListData] = []) {
+		self.listEntry = list
+	}
 
 	func getIndex(ofTask task: ToDoListData) -> Int? {
 		return self.listEntry.firstIndex(where: {$0.id == task.id})
@@ -20,8 +24,8 @@ class ToDoListModel: ObservableObject {
 	func moveContents(fromOffsets indices: IndexSet, toOffset position: Int) {
 		self.listEntry.move(fromOffsets: indices, toOffset: position)
 	}
-	func add() {
-		self.listEntry.append(ToDoListData(id: UUID().uuidString, content: "", completed: false))
+	func add(task: String) {
+		self.listEntry.append(ToDoListData(id: UUID().uuidString, content: task, completed: false))
 	}
 	func toggleTaskStatus(for task: ToDoListData) {
 		if let index = self.getIndex(ofTask: task) {
